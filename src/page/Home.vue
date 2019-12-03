@@ -1,55 +1,63 @@
 <template>
   <div class="hello">
-<!--   header-->
-    <Header></Header>
-<!--    导航栏-->
-    <div class="content">
-      <div  class="left">
-        <el-menu
-                default-active="2"
-                background-color="#419878"
-                text-color="#fff"
-                router
-                style="width:200px;height: 100%"
-                active-text-color="#fff">
-          <div class="title">
-            <i class="el-icon-menu icon"></i>
-            <span>目录</span>
-          </div>
-          <div v-for="(item,index) in menuList" :key="index">
-            <el-submenu :index="item.path||index+''"   v-if="item.children">
-              <template slot="title">
-                <i :class="item.icon" style="color:#fff"></i>
-                <span>{{item.name}}</span>
-              </template>
-              <el-menu-item-group >
-                <el-menu-item :index="itemChild.path" v-for="(itemChild,indexChild) in item.children" :key="indexChild">
-                  <template slot="title">
-                    <i :class="itemChild.icon" style="color:#fff"></i>
-                    <span>{{itemChild.name}}</span>
-                  </template>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-menu-item :index="item.path||index+''" v-else>
-              <template slot="title">
-                <i :class="item.icon" style="color:#fff"></i>
-                <span>{{item.name}}</span>
-              </template>
-            </el-menu-item>
-          </div>
-        </el-menu>
-      </div>
 
-      <div class="right">
-        <div style="height:30px">
-          <TopTag></TopTag>
-        </div>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </div>
-    </div>
+      <el-container style="height: 96vh">
+          <el-header>
+              <!--   header-->
+              <Header></Header>
+          </el-header>
+          <el-container>
+              <el-aside width="200px">
+                  <el-menu
+                          default-active="2"
+                          background-color="#419878"
+                          text-color="#fff"
+                          router
+                          style="height: 100%"
+                          active-text-color="#fff">
+                      <div class="title">
+                          <i class="el-icon-menu icon"></i>
+                          <span>目录</span>
+                      </div>
+                      <div v-for="(item,index) in menuList" :key="index">
+                          <el-submenu :index="item.path||index+''"  v-if="item.children">
+                              <template slot="title">
+                                  <i :class="item.icon" style="color:#fff"></i>
+                                  <span>{{item.name}}</span>
+                              </template>
+                              <el-menu-item-group >
+                                  <el-menu-item :index="itemChild.path" v-for="(itemChild,indexChild) in item.children" :key="indexChild">
+                                      <template slot="title">
+                                          <i :class="itemChild.icon" style="color:#fff"></i>
+                                          <span>{{itemChild.name}}</span>
+                                      </template>
+                                  </el-menu-item>
+                              </el-menu-item-group>
+                          </el-submenu>
+                          <el-menu-item :index="item.path||index+''" v-else>
+                              <template slot="title">
+                                  <i :class="item.icon" style="color:#fff"></i>
+                                  <span>{{item.name}}</span>
+                              </template>
+                          </el-menu-item>
+                      </div>
+                  </el-menu>
+              </el-aside>
+              <el-main>
+                  <el-container>
+                      <el-header height="30px" style="padding: 0!important;">
+                          <TopTag></TopTag>
+                      </el-header>
+                      <el-main>
+                          <keep-alive>
+                              <router-view></router-view>
+                          </keep-alive>
+                      </el-main>
+                  </el-container>
+              </el-main>
+          </el-container>
+      </el-container>
+
 
   </div>
 </template>
@@ -81,6 +89,11 @@ export default {
             path:'detail',
             name:'待派单',
           },
+            {
+                icon:'',
+                path:'test',
+                name:'练习',
+            },
         ]
       },
         {
@@ -133,13 +146,11 @@ export default {
      height: 40px;
      line-height: 40px;
    }
+  .el-main{
+      padding: 0!important;
+  }
 </style>
 <style lang="scss">
-  .content{
-    display:flex;
-    .left{
-     height: calc(100vh - 80px);
-     width:200px;
       .title{
         font-size: 14px;
         text-align: left;
@@ -154,11 +165,6 @@ export default {
           text-align: center;
           font-size: 18px;
         }
-      }
-    }
-    .right{
-      height: calc(100vh - 80px);
-      flex: 1
-    }
   }
 </style>
+

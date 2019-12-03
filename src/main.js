@@ -7,6 +7,11 @@ import store from './Store/index.js'
 import './theme/element/index.css';
 import './theme/element/dialog.css';
 import 'font-awesome/css/font-awesome.css'
+import '../src/assets/JS/GooFlow'
+import '../src/assets/JS/GooFunc'
+import '../src/assets/JS/child'
+import '../src/assets/Css/GooFlow.css'
+
 
 
 

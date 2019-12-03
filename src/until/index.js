@@ -47,7 +47,31 @@ export const toFixed = (num, digit = 2) => {
 export const strip = (num, precision = 12) => {
   return +parseFloat(num.toPrecision(precision))
 }
-
+//兼容各种浏览器的,获取鼠标真实位置
+export const  mousePosition = (ev)=>{
+  if(!ev) ev=window.event;
+  if(ev.pageX || ev.pageY){
+    return {x:ev.pageX, y:ev.pageY};
+  }
+  return {
+    x:ev.clientX + document.documentElement.scrollLeft - document.body.clientLeft,
+    y:ev.clientY + document.documentElement.scrollTop  - document.body.clientTop
+  };
+}
+//获取一个DIV的绝对坐标的功能函数,即使是非绝对定位,一样能获取到
+export const getElCoordinate = (dom)=> {
+  var t = dom.offsetTop;
+  var l = dom.offsetLeft;
+  dom=dom.offsetParent;
+  while (dom) {
+    t += dom.offsetTop;
+    l += dom.offsetLeft;
+    dom=dom.offsetParent;
+  }; return {
+    top: t,
+    left: l
+  };
+}
 /**
  * 日期格式化
  * @param value 初始日期值
@@ -88,3 +112,5 @@ export const noScroll = () => {
   document.body.style.overflow = 'hidden'
   document.addEventListener('touchmove', mo, false) // 禁止页面滚动
 }
+
+

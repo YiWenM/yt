@@ -2,10 +2,13 @@
     <div>
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane label="借贷需求" name="1">
-                <div style="width: 100vw;height: 100vh;background: red">
-                    <div style="background: #f3d19e;width: 3000px;">11111</div>
-<!--                    <BaseInfo :editCfg="editCfg" :editData="editData" :editRules="editRules"></BaseInfo>-->
-                    <!--                <SearchFile :config="searchConfig" @search="search"></SearchFile>-->
+                <div style="overflow: auto">
+                    <div>
+<!--                        <div style="height: 3000px"></div>-->
+<!--                        <BaseInfo :editCfg="editCfg" :editData="editData" :editRules="editRules"></BaseInfo>-->
+                        <!--                <SearchFile :config="searchConfig" @search="search"></SearchFile>-->
+                    </div>
+
                 </div>
 
             </el-tab-pane>
